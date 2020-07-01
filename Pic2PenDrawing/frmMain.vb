@@ -68,17 +68,20 @@
 
 	End Sub
 
-	Sub LoadImage()
+	Function LoadImage() As Boolean
 
 		Dim dlg As New OpenFileDialog With {.Filter = "Image File|*.jpg;*.bmp;*.png;*.jpeg"}
 
 		If dlg.ShowDialog = DialogResult.OK Then
 
 			LoadImage(dlg.FileName)
+			Return True
 
 		End If
 
-	End Sub
+		Return False
+
+	End Function
 
 	Sub SaveImage()
 
@@ -295,8 +298,7 @@
 
 	Private Sub btnLoadImage_Click(sender As Object, e As EventArgs) Handles btnLoadImage.Click
 
-		LoadImage()
-		ConvertToPixelDraw()
+		If LoadImage() Then ConvertToPixelDraw()
 
 	End Sub
 
@@ -313,8 +315,7 @@
 
 	Private Sub picSource_Click(sender As Object, e As EventArgs) Handles picSource.Click
 
-		LoadImage()
-		ConvertToPixelDraw()
+		If LoadImage() Then ConvertToPixelDraw()
 
 	End Sub
 
